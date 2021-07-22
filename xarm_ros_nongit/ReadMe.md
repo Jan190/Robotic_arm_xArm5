@@ -1,6 +1,11 @@
-# Service Introduction
-&ensp;&ensp;The services and messages defined in this package is based on the programming API. To offer a way for users to call them by ROS interface. Services provided are:  
+# Uvod
+	U nastavku ReadMe slijedi detaljan opis kako iz postojećeg xarm_description napraviti svoju simulaciju modela robota u Gazebu i Rvizu kako bi se mogli isprobavati različiti kontroleri. Istim postupkom moguće je napraviti simulaciju u Gazebu i kinematičli model pomoću Moveit-a za bilo koju ruku. U slučaju nedostatka URDF datoteke robota moguće ju je generirati uz pomoć SOLIDWORKS paketa 
 
+## Izrada moveit_configure datoteke
+
+	$  roslaunch moveit_setup_assistant setup_assistant.launch
+	
+	
 ## motion_ctrl  
 &ensp;&ensp;To enable or disable the servo control of any joint.(message type: ***xarm_msgs::SetAxis***)  
 ## set_mode  
