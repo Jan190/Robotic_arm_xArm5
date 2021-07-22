@@ -5,8 +5,21 @@
 
 	$  roslaunch moveit_setup_assistant setup_assistant.launch
 	
-![](ReadMe_image/png.png)
+&ensp;&ensp;	Nakon pokretanja moveit asistenta potrebno je odabrati URDF datoteku robotske ruke.
 	
+![](ReadMe_image/Start.png)
+	
+
+&ensp;&ensp;	Poslije učuitavanja modela potrebno je definirati Self-Collisins. Ovdje je potrebno stisnuti na gumb ***Generate Collisions Matrix***
+
+![](ReadMe_image/self_collision.png)
+
+
+&ensp;&ensp;	U Planning groupu potrebno je definirati kinematički algoritam za rješavanje pozicije svih zglobova u prostoru. Najčešće korišteni algoritam je ***kdl_kinematics_plugin/KDLKinematicsPlugin***. 
+
+
+![](ReadMe_image/Planning_groups.png)
+
 	
 ## motion_ctrl  
 &ensp;&ensp;To enable or disable the servo control of any joint.(message type: ***xarm_msgs::SetAxis***)  
