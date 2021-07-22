@@ -20,6 +20,25 @@
 
 ![](ReadMe_image/Planning_groups.png)
 
+&ensp;&ensp;	Zadnji korak koji je potreban unutar Planning Groups-a je definiranje svih Jointova unutar kinematičkog modela. U slučaju da se unutar robotske ruke nalazi i hvataljka potrebno je napraviti zasebni kinematički model za nju unutar Planning Groupsa te se za nju ne specificira Kinematic Solver.
+
+![](ReadMe_image/add_joints.png)
+
+&ensp;&ensp;	Unutar Robot Poses moguće je isprobati ispravnost pokretanja svih zglobova i spremiti glavne pozicije robota u kojima bi se on mogao nalaziti. U ovom slučaju spremljena je njegova početna pozicija. Treba stisnuti na gumb ***Add Pose***
+
+![](ReadMe_image/nulta_pozicija.png)
+
+&ensp;&ensp;	Unutar End Effectors-a definira se zadnji zglob na robotu. U ovom slučaju ne koristi se hvataljka te je njegov zadnji zglob joint5 unutar kinematičkog modela arm_controller.
+
+![](ReadMe_image/end_effector.png)
+
+&ensp;&ensp;	Unutar ROS Controla potrebno je definirati željeni kontroller pomoću ***Add Controller*** ili ***Auto Add Follow Joints Trajectory Controllers For Each Planning Groups***. Moguće je odabrati između više različitih vrsta controllera te je u ovom slučaju odabran pomoću ***Add Controller*** naredbe position_controllers/JointTrajectoryController. Te je na slici ispod moguće vidjeti kako se definira kontroler.
+
+![](ReadMe_image/position_controller.png)
+
+&ensp;&ensp;	Potrebno je definirati podatke autora. Zadnji dio generiranja robot_moveit_config paketa je odabrati gdje će datoteka biti spremljena i što sve želimo definirati. Ispravna nomenklatura za generiranje paketa je ***imerobota_moveit_conig***. 
+
+![](ReadMe_image/Generate_configuration_files.png)
 	
 ## motion_ctrl  
 &ensp;&ensp;To enable or disable the servo control of any joint.(message type: ***xarm_msgs::SetAxis***)  
