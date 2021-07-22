@@ -1,5 +1,5 @@
 # Uvod
-	U nastavku ReadMe slijedi detaljan opis kako iz postojećeg xarm_description napraviti svoju simulaciju modela robota u Gazebu i Rvizu kako bi se mogli isprobavati različiti kontroleri. Istim postupkom moguće je napraviti simulaciju u Gazebu i kinematičli model pomoću Moveit-a za bilo koju ruku. U slučaju nedostatka URDF datoteke robota moguće ju je generirati uz pomoć SOLIDWORKS paketa 
+&ensp;&ensp;	U nastavku ReadMe slijedi detaljan opis kako iz postojećeg xarm_description napraviti svoju simulaciju modela robota u Gazebu i Rvizu kako bi se mogli isprobavati različiti kontroleri. Istim postupkom moguće je napraviti simulaciju u Gazebu i kinematičli model pomoću Moveit-a za bilo koju ruku. U slučaju nedostatka URDF datoteke robota moguće ju je generirati uz pomoć SOLIDWORKS paketa 
 
 ## Izrada moveit_configure datoteke
 
