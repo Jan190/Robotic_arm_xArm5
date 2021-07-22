@@ -4,7 +4,7 @@
   <arg name="debug" default="false" />
   <arg unless="$(arg debug)" name="launch_prefix" value="" />
   <arg     if="$(arg debug)" name="launch_prefix"
-	   value="gdb -x $(find xarm5_moveit_config)/launch/gdb_settings.gdb --ex run --args" />
+           value="gdb -x $(find xarm5_moveit_config_jan)/launch/gdb_settings.gdb --ex run --args" />
 
   <!-- Verbose Mode Option -->
   <arg name="info" default="$(arg debug)" />
@@ -24,7 +24,7 @@
   <!--
   <arg name="capabilities" value="
                 a_package/AwsomeMotionPlanningCapability
-                another_package/GraspPlanningPipeline
+                another_package/GraspPlannin
                 " />
   -->
 
@@ -36,20 +36,21 @@
                 " />
   -->
 
-  <!-- Planning Functionality -->
-  <include ns="move_group" file="$(find xarm5_moveit_config)/launch/planning_pipeline.launch.xml">
-    <arg name="pipeline" value="ompl" />
+  <arg name="load_robot_description" default="true" />
+  <!-- load URDF, SRDF and joint_limits configuration -->
+  <include file="$(find xarm5_moveit_config_jan)/launch/planning_context.launch">
+    <arg name="load_robot_description" value="$(arg load_robot_description)" />
   </include>
 
   <!-- Trajectory Execution Functionality -->
-  <include ns="move_group" file="$(find xarm5_moveit_config)/launch/trajectory_execution.launch.xml" if="$(arg allow_trajectory_execution)">
+  <include ns="move_group" file="$(find xarm5_moveit_config_jan)/launch/trajectory_execution.launch.xml" if="$(arg allow_trajectory_execution)">
     <arg name="moveit_manage_controllers" value="true" />
     <arg name="moveit_controller_manager" value="xarm5" unless="$(arg fake_execution)"/>
     <arg name="moveit_controller_manager" value="fake" if="$(arg fake_execution)"/>
   </include>
 
   <!-- Sensors Functionality -->
-  <include ns="move_group" file="$(find xarm5_moveit_config)/launch/sensor_manager.launch.xml" if="$(arg allow_trajectory_execution)">
+  <include ns="move_group" file="$(find xarm5_moveit_config_jan)/launch/sensor_manager.launch.xml" if="$(arg allow_trajectory_execution)">
     <arg name="moveit_sensor_manager" value="xarm5" />
   </include>
 
@@ -61,9 +62,8 @@
     <param name="allow_trajectory_execution" value="$(arg allow_trajectory_execution)"/>
     <param name="max_safe_path_cost" value="$(arg max_safe_path_cost)"/>
     <param name="jiggle_fraction" value="$(arg jiggle_fraction)" />
-    <param name="capabilities" value="$(arg capabilities)"/>
-    <param name="disable_capabilities" value="$(arg disable_capabilities)"/>
-
+    <param name="capabilities" value="$(arg capabilities)" />
+    <param name="disable_capabilities" value="$(arg disable_capabilities)" />
 
     <!-- Publish the planning scene of the physical robot so that rviz plugin can know actual robot -->
     <param name="planning_scene_monitor/publish_planning_scene" value="$(arg publish_monitored_planning_scene)" />
