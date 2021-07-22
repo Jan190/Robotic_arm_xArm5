@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+    <group ns="/skid4wd">
+        <node respawn="True" name="gps" pkg="skid4wd_description" type="gazebo_GPS_server.py" output="screen" clear_params="True">
+            <param name="capability_group" value="autostart" />
+            <param name="respawn/max" value="5" />
+            <param name="respawn/min_runtime" value="60" />
+            <param name="respawn/delay" value="2" />
+        </node>
+    </group>
+</launch>
