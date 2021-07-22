@@ -5,7 +5,7 @@
 
 	$  roslaunch moveit_setup_assistant setup_assistant.launch
 	
-- ReadMe_image/png.png ![](ReadMe_image/png.png)
+![](ReadMe_image/png.png)
 	
 	
 ## motion_ctrl  
