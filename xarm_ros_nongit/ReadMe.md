@@ -39,40 +39,31 @@
 &ensp;&ensp;	Potrebno je definirati podatke autora. Zadnji dio generiranja robot_moveit_config paketa je odabrati gdje će datoteka biti spremljena i što sve želimo definirati. Ispravna nomenklatura za generiranje paketa je ***imerobota_moveit_conig***. 
 
 ![](ReadMe_image/Generate_configuration_files.png)
-	
-## motion_ctrl  
-&ensp;&ensp;To enable or disable the servo control of any joint.(message type: ***xarm_msgs::SetAxis***)  
-## set_mode  
-&ensp;&ensp;To set operation mode. (message type: ***xarm_msgs::SetInt16***)  
-&ensp;&ensp;* 0 for POSE mode, the robot will be position controlled. Trajectory will be planned by XArm Controller.  
-&ensp;&ensp;* 1 for SERVOJ mode, the robot will be commanded by servo_j function, fast & immediate execution like a step response, use this if user can generate properly interpolated trajectory.  
-&ensp;&ensp;* 2 for TEACH_JOINT mode, Gravity compensated mode, no position control.  
 
-## set_state   
-&ensp;&ensp;To set robot state. (message type: ***xarm_msgs::SetInt16***)  
-&ensp;&ensp;* 0 for READY/START state, robot must be in this state to perform any motion.  
-&ensp;&ensp;* 3 for PAUSE state, robot motion will be suspended.  
-&ensp;&ensp;* 4 for STOP state, if error occurs or configuration changes, robot will switch to this state.  
+## Izmjena moveit_configure datoteke
 
-## go_home  
-&ensp;&ensp;Robot will go to home position with specified velocity and acceleration.(message type: ***xarm_msgs::Move***)  
+&ensp;&ensp;	Prva datoteka koju je potrebno izmjeniti kako bismo mogli spojiti Rviz i Gazebo pomoću kontrolera je ***config/ros_controllers.yaml*** datoteka. U datoteci je potrebno dodati dodatni namespace kako bi stvar mogla raditi i potrebno je dodati listu kontrolera kako bi Rviz mogao prepoznati prilikom pokretanja kontrolere koji su upogonjeni u Gazebu. Na slici ispod prikazano je što je sve potrebno dodati i gdje.
 
-## move_line   
-&ensp;&ensp;Robot TCP will move to Caetesian target point with a straight line trajectory. Under specified Cartesian velocity and acceleartion. (message type: ***xarm_msgs::Move***)  
+![](ReadMe_image/ros_controllers.png)
 
-## move_lineb  
-&ensp;&ensp;Given a set of targets, robot will move to final target through middle points, at each middle point, 2 straight-line trajectory will be blended with specified radius. (message type: ***xarm_msgs::Move***)  
+&ensp;&ensp;	Za pokretanje Rviz-a odabrano je izmjeniti datoteku ***launch/demo.launch***. Potrebno je definirati ispravni namespace gdje se publishaju joint_statovi te je potrebno promjeniti fake_execution u false.
 
-## move_joint    
-&ensp;&ensp;Given all desired joint positions, and max joint angular velocity/acceleration, robot will move to joint space target. (message type: ***xarm_msgs::Move***)  
+ ![](ReadMe_image/demo.png)
+ 
+&ensp;&ensp;	Nakon što smo stavili ***fake_execution*** u false, demo.launch neće raditi te je potrebno izmjeniti datoteku ***launch/trajectory_execution.launch.xml***. 
 
-## move_servoj:   
-&ensp;&ensp;Used in SERVOJ mode, and if user have trajectory planned, call this service with high enough rate. Each trajectory point will be executed fast and immediately. (message type: ***xarm_msgs::Move***)  
+ ![](ReadMe_image/trajectory.png)
+ 
+&ensp;&ensp;	Za pokretanje Gazeba iz generirane datoteke moveit-a odabran je gazebo.launch gdje je potrebno podesiti pravilno pozivanje urdf datoteke robota zbog toga što moveit generira krivu putanju. Crvenom bojom su označene izbrisani dijelovi koda, a plavom dodani novi dijelovi.
+ 
+  ![](ReadMe_image/gazebo.png)
+  
+&ensp;&ensp;	Kako bismo mogli pokrenuti kontroler u Gazebu potrebno je izmjeniti ***launch/ros_controllers.launch*** datoteku jer u njoj nisu definirani dobro namespacovi i svi potrebni kontroleri za rad simulacije. Na slici ispod prikazan je izmjenjeni oblik datoteke.
 
-***Please check the inside [srv](./srv/) files for detailed data information.***
+  ![](ReadMe_image/ros_controllers2222.png)
+  
+  
+  
+  
+ 
 
-# Feedback Status Message
-
-Refer to [RobotMsg](./msg/RobotMsg.msg) for robot feedback information contents published through topic "/xarm/xarm_states".  
-
-Refer to [CIOState](./msg/CIOState.msg) for the gpio of the control box feedback information contents published through topic "/xarm/xarm_cgpio_states".  
