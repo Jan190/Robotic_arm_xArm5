@@ -11,6 +11,12 @@
 				<box size="0.001 0.001 0.001" />
 			</geometry>
 		</visual>
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.001 0.001 0.001" />
+			</geometry>
+		</collision>
 	</link>
 	<xacro:phantomx_reactor_wrist prefix="" parent="base_footprint">
 		<origin xyz="0 0 0" rpy="0 0 0" />
