@@ -1,0 +1,72 @@
+#obstacle_range: 4.
+#raytrace_range: 3.0
+#footprint: [[x0, y0], [x1, y1], ... [xn, yn]]
+#robot_radius: 0.4
+#inflation_radius: 0.55
+
+footprint: [[0.5, 0.2], [0.5, -1.0], [-0.6, -1.0], [-0.6, 1.0]]
+controller_frequency: 20
+footprint_padding: 0.2
+yaw_goal_tolerance: 0.3
+
+#robot_radius: 1.1
+#allow_unknown: true
+#use_dijkstra: true
+#track_unknown_space: true
+
+static:
+ map_topic: /rtabmap/grid_prob_map
+ subscribe_to_updates: true
+
+transform_tolerance: 0.4
+##use_dijkstra: true
+cost_factor: 6. #Default is 3
+
+#recovery_behaviors:
+#  - name: 'super_conservative_reset'
+#    type: 'clear_costmap_recovery/ClearCostmapRecovery'
+#  - name: 'conservative_reset'
+#    type: 'clear_costmap_recovery/ClearCostmapRecovery'
+#  - name: 'aggressive_reset'
+#    type: 'clear_costmap_recovery/ClearCostmapRecovery'
+#  - name: 'move_slow_and_clear'
+#    type: 'move_slow_and_clear/MoveSlowAndClear'
+
+recovery_behavior_enabled: false
+clearing_rotation_allowed: false
+occdist_scale: 0.1 #40cm, default is 0.01
+
+super_conservative_reset:
+  reset_distance: 5.0
+
+conservative_reset:
+  reset_distance: 3.0
+
+aggressive_reset:
+  reset_distance: 1.84
+
+move_slow_and_clear:
+  clearing_distance: 0.5
+  limited_trans_speed: 0.5
+  limited_rot_speed: 0.45
+  limited_distance: 0.3
+
+obstacle_layer:
+  enabled: true
+  obstacle_range: 20.0
+  raytrace_range: 3.0
+  max_obstacle_height: 2.
+  min_obstacle_height: 1.
+  inflation_radius: 0.6
+  
+inflation_layer:
+  enabled:              true
+  cost_scaling_factor:  10.  # exponential rate at which the obstacle cost drops off (default: 10)
+  inflation_radius:     0.6  # max. distance from an obstacle at which costs are incurred for planning paths.
+  
+ #The cost at which a cell is considered an obstacle when a map is read from the map_server
+lethal_cost_threshold: 50
+
+observation_sources: point_cloud_sensor
+point_cloud_sensor: {sensor_frame: skid4wd/camera_mount, data_type: PointCloud2, topic: /kinect/depth/points, marking: true, clearing: true}
+#

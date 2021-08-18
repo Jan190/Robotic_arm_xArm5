@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: phantomx_reactor_arm_description
+    relative_path: urdf/phantomx_reactor_arm_wrist.urdf.xacro
+    xacro_args: --inorder
+  SRDF:
+    relative_path: config/phantomx_reactor_arm.srdf
+  CONFIG:
+    author_name: jj
+    author_email: jj@fsb.hr
+    generated_timestamp: 1628695751
